@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		.main{
+			position:relative;
+			margin:auto;
+			width:30%;
+			top:200px;
+		}
+		button{
+			border-top-left-radius: 10px;
+			border-bottom-right-radius:10px;
+			margin:2px;
+			width:50px;
+			outline:0;
+		}
+	</style>
+	<script type="text/javascript">
+		var a=new Array(3);
+		var z=1,i,j;
+		var c,b;
+		var val=3;val1=0;
+		function ColorText(){
+			document.getElementsByTagName("user")="First User";
+		}
+		function Arrin(){
+			for(i=0; i<10; i++){
+				a[i]=new Array(9);
+			}
+			for(i=0; i<3; i++){
+				for(j=0; j<3; j++){
+					a[i][j]='-';
+				}
+			}
+		}
+		Arrin();
+		function Arrclear(){
+			Arrin();
+			for(i=1;i<=9;i++){
+				document.getElementById(i).innerHTML="_";
+			}
+		}//to clear the value of array
+	</script>
+	<script type="text/javascript">
+		function Arr(val1,Id){
+			var m=0,k,l=0,x=1,my=0;
+			var win=0;
+			var n,n1,n2,n3,n4;
+			if(z==1){
+				b='x';z=0;c='o';
+			}else{
+				b='o';z=1;c='x';
+			}
+			for(i=0; i<val; i++){
+				for(j=0; j<val; j++){
+					if(i*val+j==val1-1){
+						if(a[i][j]=='-' && a[i][j]!=b){
+							a[i][j]=c;
+							document.getElementById(Id).innerHTML=c;
+							for(n1=j-1,n2=j+1; (n1>=0 || n2<val);){
+								if(n1>=0){if(a[i][n1]!='-' && a[i][n1]==c){
+									n1--;
+									m++;my=1;
+								}}
+								if(n2<val){if(a[i][n2]!='-' && a[i][n2]==c){
+									n2++;
+									m++;my=1;
+								}}
+								if(my==0){n1=-1; n2=val;}my=0;
+							}if(m==val-1){win=1;}m=0;//1
+							for(n1=i-1,n2=i+1; (n1>=0 || n2<val);){
+								if(n1>=0){if(a[n1][j]!='-' && a[n1][j]==c){
+									n1--;
+									m++;my=1;
+								}}
+								if(n2<val){if(a[n2][j]!='-' && a[n2][j]==c){
+									n2++;
+									m++;my=1;
+								}}
+								if(my==0){n1=-1; n2=val;}my=0;
+							}if(m==val-1){win=1;}m=0;
+							for(n=i-1,n1=j-1,n3=i+1,n4=j+1; (n>=0 || n4<val);){
+								if(n>=0 && n1>=0){if(a[n][n]!='-' && a[n][n]==c){
+										n--;n1--;
+										m++;my=1;
+									}
+								}
+								if(n3<val && n4<val){if(a[n3][n3]!='-' && a[n3][n4]==c){
+										n3++;n4++;
+										m++;my=1;
+									}
+								}
+								if(my==0){n=-1; n4=val;}my=0;
+							}if(m==val-1){win=1;}m=0;
+							for(n=i-1,n1=j+1,n3=i+1,n4=j-1; (n>=0 || n3<val);){
+								if(n>=0 && n1<val){if(a[n][n1]!='-' && a[n][n1]==c){
+										n--;n1++;
+										m++;my=1;
+									}
+								}
+								if(n3<val && n4>=0){if(a[n3][n4]!='-' && a[n3][n4]==c){
+										n3++;n4--;
+										m++;my=1;
+									}
+								}
+								if(my==0){n=-1; n3=val;}my=0;
+							}if(m==val-1){win=1;}m=0;
+						}else{alert("The value already exists");if(z==0){z=1;}else{z=0;}}
+					}
+				}
+			}
+			if(win==1){
+				if(z==1){alert(" Second User winn ");}else{alert("First User winn ");}
+				Arrclear();
+				win=0;
+			}
+			if(z==1){
+					document.getElementById("user").innerHTML="First user(o)";
+			}else{document.getElementById("user").innerHTML="Second user(x)";}
+			if(win!=1){
+			for(i=0,l=0; i<val; i++){
+				for(j=0; j<val; j++){
+					if(a[i][j]!='-'){
+						l++;
+					}
+				}
+			}
+		}
+			if(l==val*val){alert(" Match is draw ");Arrclear();}
+		}//funciton end
+	</script>
+</head>
+<body>
+	<font ></font>
+	<div class="main">
+	<button id="1" onclick="Arr(1,'1');">_</button><button id="2" onclick="Arr(2,'2');">_</button><button id="3" onclick="Arr(3,'3');">_</button><br>
+
+	<button id="4" onclick="Arr(4,'4');">_</button><button id="5" onclick="Arr(5,'5');">_</button><button id="6" onclick="Arr(6,'6');">_</button><br>
+
+	<button id="7" onclick="Arr(7,'7');">_</button><button id="8" onclick="Arr(8,'8');">_</button><button id="9" onclick="Arr(9,'9');">_</button><br><br><br><br><br><br>
+	<font color="red" id="user">First User(o)</font>
+</div>
+</body>
+</html>
